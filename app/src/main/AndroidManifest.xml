@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.teeku.christmas"
+    android:versionCode="2"
+    android:versionName="1.1">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+
+    <!--
+  IMPORTANT: Change "com.parse.starter.permission.C2D_MESSAGE" in the lines below
+  to match your app's package name + ".permission.C2D_MESSAGE".
+-->
+    <permission
+        android:name="com.teeku.christmas.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.teeku.christmas.permission.C2D_MESSAGE" />
+
+    <application
+        android:name="com.teeku.christmas.ParseApplication"
+        android:icon="@drawable/imglauncheran"
+        android:label="Pakistani Models"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.teeku.christmas.MainActivity"></activity>
+        <activity android:name="com.teeku.christmas.SingleItemView" />
+        <activity
+            android:name="com.teeku.christmas.CardElement"
+            android:label="@string/title_activity_card_element"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name="com.teeku.christmas.VideoLink"
+            android:label="@string/title_activity_video_link"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.teeku.christmas.PlayVideo"
+            android:label="@string/title_activity_play_video"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name="com.teeku.christmas.SplashScreen"
+            android:label="Pakistani Models"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.parse.PushService" />
+        <!--<receiver android:name="com.parse.ParsePushBroadcastReceiver"-->
+            <!--android:exported="false">-->
+        <receiver android:name="com.teeku.christmas.JSONCustomReceiver"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="com.parse.push.intent.RECEIVE" />
+                <action android:name="com.parse.push.intent.DELETE" />
+                <action android:name="com.parse.push.intent.OPEN" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.parse.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <!--
+                  IMPORTANT: Change "com.parse.starter" to match your app's package name.
+                -->
+                <category android:name="com.teeku.christmas" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>
